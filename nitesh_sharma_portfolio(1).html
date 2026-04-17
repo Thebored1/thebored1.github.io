@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nitesh Sharma</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    :root {
+      --bg: #0d0d0d;
+      --bg2: #141414;
+      --bg3: #1a1a1a;
+      --border: #2a2a2a;
+      --border2: #333;
+      --text: #e8e6e0;
+      --text2: #888;
+      --text3: #555;
+      --accent: #4ade80;
+      --accent2: #22c55e
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Sora', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      min-height: 100vh
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      color: var(--text2);
+      transition: color .2s
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text)
+    }
+
+    .nav-logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--accent)
+    }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 3rem 2rem
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: start;
+      padding: 2rem;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 2.5rem
+    }
+
+    .hero-name {
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: .25rem;
+      letter-spacing: -.02em
+    }
+
+    .hero-role {
+      font-size: 13px;
+      color: var(--accent);
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 1.2rem
+    }
+
+    .hero-bio {
+      color: var(--text2);
+      font-size: 14px;
+      line-height: 1.8;
+      margin-bottom: 1.2rem
+    }
+
+    .hero-bio strong {
+      color: var(--text);
+      font-weight: 500
+    }
+
+    .socials {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin-bottom: 1.2rem;
+      flex-wrap: wrap
+    }
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      color: var(--text2);
+      transition: all .2s;
+      font-size: 14px;
+      cursor: pointer;
+      background: transparent;
+      flex-shrink: 0
+    }
+
+    .social-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent)
+    }
+
+    .social-btn.active {
+      border-color: var(--accent);
+      color: var(--accent)
+    }
+
+    .phone-expand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow: hidden;
+      max-width: 0;
+      opacity: 0;
+      transition: max-width .35s ease, opacity .25s ease
+    }
+
+    .phone-expand.open {
+      max-width: 200px;
+      opacity: 1
+    }
+
+    .phone-num {
+      font-size: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--accent);
+      white-space: nowrap
+    }
+
+    .copy-hint {
+      font-size: 11px;
+      color: var(--text3);
+      white-space: nowrap;
+      transition: color .2s
+    }
+
+    .copy-hint.copied {
+      color: var(--accent)
+    }
+
+    .btn {
+      display: inline-block;
+      padding: .5rem 1.1rem;
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      font-size: 13px;
+      color: var(--text2);
+      transition: all .2s;
+      cursor: pointer;
+      font-family: 'Sora', sans-serif;
+      background: transparent
+    }
+
+    .btn:hover {
+      border-color: var(--accent);
+      color: var(--accent)
+    }
+
+    .avatar-initials {
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--accent);
+      font-family: 'JetBrains Mono', monospace
+    }
+
+    section {
+      margin-bottom: 2.5rem
+    }
+
+    .section-title {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 1.2rem;
+      padding-bottom: .6rem;
+      border-bottom: 1px solid var(--border)
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .75rem
+    }
+
+    .skill-row {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: .75rem 1rem
+    }
+
+    .skill-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--text3);
+      margin-bottom: .3rem;
+      font-family: 'JetBrains Mono', monospace
+    }
+
+    .skill-val span {
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      border-radius: 4px;
+      padding: 2px 7px;
+      font-size: 11px;
+      margin-right: 4px;
+      margin-bottom: 4px;
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text);
+      transition: all .2s
+    }
+
+    .skill-val span:hover {
+      border-color: var(--accent);
+      color: var(--accent)
+    }
+
+    .exp-list {
+      display: flex;
+      flex-direction: column;
+      gap: .75rem
+    }
+
+    .exp-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color .2s
+    }
+
+    .exp-card:hover {
+      border-color: var(--border2)
+    }
+
+    .exp-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 1rem 1.2rem;
+      cursor: pointer
+    }
+
+    .exp-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0
+    }
+
+    .exp-info {
+      flex: 1;
+      min-width: 0
+    }
+
+    .exp-company {
+      font-weight: 500;
+      font-size: 14px
+    }
+
+    .exp-role {
+      font-size: 12px;
+      color: var(--text2)
+    }
+
+    .exp-meta {
+      text-align: right;
+      flex-shrink: 0
+    }
+
+    .exp-date {
+      font-size: 11px;
+      color: var(--text3);
+      font-family: 'JetBrains Mono', monospace
+    }
+
+    .exp-type {
+      font-size: 11px;
+      color: var(--text3)
+    }
+
+    .exp-chevron {
+      color: var(--text3);
+      font-size: 12px;
+      margin-left: 8px;
+      transition: transform .2s
+    }
+
+    .exp-body {
+      padding: 0 1.2rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease, padding .2s
+    }
+
+    .exp-body.open {
+      padding: 0 1.2rem 1.2rem;
+      max-height: 800px
+    }
+
+    .exp-body ul {
+      list-style: none;
+      padding: 0;
+      border-top: 1px solid var(--border);
+      padding-top: .9rem
+    }
+
+    .exp-body li {
+      font-size: 13px;
+      color: var(--text2);
+      padding: .35rem 0 .35rem 1.1rem;
+      position: relative;
+      line-height: 1.7
+    }
+
+    .exp-body li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 11px;
+      top: .4rem
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .75rem
+    }
+
+    .project-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem;
+      transition: border-color .2s
+    }
+
+    .project-card:hover {
+      border-color: var(--border2)
+    }
+
+    .project-name {
+      font-weight: 500;
+      font-size: 14px;
+      color: var(--accent);
+      margin-bottom: .3rem
+    }
+
+    .project-desc {
+      font-size: 12px;
+      color: var(--text2);
+      line-height: 1.7
+    }
+
+    footer {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem 2.5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: var(--text3);
+      font-family: 'JetBrains Mono', monospace
+    }
+
+
+    .exp-header.open .exp-chevron {
+      transform: rotate(90deg)
+    }
+
+    @media(max-width:600px) {
+      .hero {
+        grid-template-columns: 1fr
+      }
+
+
+      .skills-grid,
+      .projects-grid {
+        grid-template-columns: 1fr
+      }
+
+      main {
+        padding: 2rem 1rem
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+
+
+
+  <main>
+    <div class="hero">
+      <div class="hero-content">
+        <div class="hero-name">Nitesh Sharma</div>
+        <div class="hero-role">Full-Stack Developer &nbsp;|&nbsp; Flutter · Django · NextJS</div>
+        <p class="hero-bio">
+          Full-Stack Developer with <strong>4+ years of experience</strong> building web and cross-platform applications
+          using <strong>Python, JavaScript, and Dart</strong>. Proven track across ERP systems, healthcare software, CMS
+          platforms, and API integrations — including <strong>ABDM/ABHA</strong> compliance and Dockerized deployments.
+        </p>
+        <div class="socials">
+          <a href="https://github.com/Thebored1" class="social-btn" title="GitHub">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
+            </svg>
+          </a>
+          <a href="mailto:nites0262@gmail.com" class="social-btn" title="Email">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,12 2,6" />
+            </svg>
+          </a>
+          <button class="social-btn" id="phoneBtn" title="Phone" onclick="togglePhone()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.38 2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+            </svg>
+          </button>
+          <div class="phone-expand" id="phoneExpand">
+            <span class="phone-num">+91 70672 83010</span>
+            <span class="copy-hint" id="copyHint" style="cursor:pointer" onclick="copyPhone()">copy</span>
+          </div>
+        </div>
+        <button class="btn" onclick="openLink('mailto:nites0262@gmail.com')">Get in touch →</button>
+      </div>
+    </div>
+
+    <section>
+      <div class="section-title">Technical Skills</div>
+      <div class="skills-grid">
+        <div class="skill-row">
+          <div class="skill-label">Languages</div>
+          <div class="skill-val"><span>Python</span><span>Dart</span><span>JavaScript</span></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-label">Frameworks</div>
+          <div class="skill-val"><span>Django</span><span>Flutter</span><span>NextJS</span><span>Frappe</span></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-label">Backend</div>
+          <div class="skill-val">
+            <span>DRF</span><span>JWT</span><span>PostgreSQL</span><span>SQLite</span><span>Supabase</span></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-label">Auth & Security</div>
+          <div class="skill-val"><span>OAuth 2.0</span><span>OpenID Connect</span></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-label">Healthcare</div>
+          <div class="skill-val"><span>ABDM M1</span><span>ABHA API</span><span>NHA Gateway</span></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-label">AI / ML</div>
+          <div class="skill-val"><span>OpenCV</span><span>dlib</span><span>Face Recognition</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">Experience</div>
+      <div class="exp-list">
+        <div class="exp-card">
+          <div class="exp-header" onclick="toggle(this)">
+            <div class="exp-icon">⚕</div>
+            <div class="exp-info">
+              <div class="exp-company">Siddhi Softwares</div>
+              <div class="exp-role">Full-Stack Developer · On-site</div>
+            </div>
+            <div class="exp-meta">
+              <div class="exp-date">Nov 2025 – Present</div>
+              <div class="exp-type">Bilaspur, CG</div>
+            </div>
+            <span class="exp-chevron">▶</span>
+          </div>
+          <div class="exp-body">
+            <ul>
+              <li>Built a full-stack Hospital HMS/ERM (Flutter + Django) covering patient registration, vitals, clinical
+                notes, multi-mode billing, stock management, and role-based access secured with JWT and Django-Auditlog.
+              </li>
+              <li>Built an ABDM Milestone 1-compliant ERM with ABHA ID creation/verification via NHA Gateway APIs;
+                containerized with Docker for Windows and Linux.</li>
+              <li>Developed a hybrid O2O retail suite — Flutter desktop POS (offline-first, FIFO inventory, double-entry
+                accounting) + NextJS web storefront with e-commerce, delivery console, and bidirectional sync.</li>
+              <li>Built an industrial Weighbridge Management app with serial port hardware integration, transaction
+                recording, camera docs, and PDF generation.</li>
+              <li>Developed a cross-platform trade fair app with interactive map of 320+ stalls, real-time booking via
+                Supabase Realtime, multi-method auth, and Row Level Security.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="exp-card">
+          <div class="exp-header" onclick="toggle(this)">
+            <div class="exp-icon">📦</div>
+            <div class="exp-info">
+              <div class="exp-company">Kishori Traders</div>
+              <div class="exp-role">ERP Developer · On-site · Part-time</div>
+            </div>
+            <div class="exp-meta">
+              <div class="exp-date">Jan 2025 – Nov 2025</div>
+              <div class="exp-type">Bilaspur, CG</div>
+            </div>
+            <span class="exp-chevron">▶</span>
+          </div>
+          <div class="exp-body">
+            <ul>
+              <li>Customized Frappe/ERPNext for inventory management, sales workflows, and business-specific doctypes.
+              </li>
+              <li>Built custom doctypes with dynamic child tables and master-detail structures; resolved Docker bench,
+                Redis, and database issues.</li>
+              <li>Developed a face recognition module using Python (OpenCV, dlib, deep learning) integrated directly
+                into the ERP platform.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="exp-card">
+          <div class="exp-header" onclick="toggle(this)">
+            <div class="exp-icon">🌐</div>
+            <div class="exp-info">
+              <div class="exp-company">Astonsys</div>
+              <div class="exp-role">Full-Stack Developer · Remote · Freelance</div>
+            </div>
+            <div class="exp-meta">
+              <div class="exp-date">Sep 2022</div>
+              <div class="exp-type">Remote</div>
+            </div>
+            <span class="exp-chevron">▶</span>
+          </div>
+          <div class="exp-body">
+            <ul>
+              <li>Developed and maintained full-stack web applications using Django in a remote team environment managed
+                via Git.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="section-title">Featured Projects</div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-name">Hospital HMS/ERM</div>
+          <div class="project-desc">Full-stack hospital management system with Flutter + Django. Patient registration,
+            vitals, billing, stock, and role-based access.</div>
+        </div>
+        <div class="project-card">
+          <div class="project-name">ABDM ERM</div>
+          <div class="project-desc">ABDM Milestone 1-compliant ERM with ABHA ID integration via NHA Gateway. Dockerized
+            for Windows & Linux.</div>
+        </div>
+        <div class="project-card">
+          <div class="project-name">RetailSaaS O2O Platform</div>
+          <div class="project-desc">Hybrid retail suite — Flutter desktop POS with offline-first sync + NextJS
+            storefront with delivery agent console.</div>
+        </div>
+        <div class="project-card">
+          <div class="project-name">Trade Fair Interactive Map</div>
+          <div class="project-desc">Cross-platform app with 320+ stall map, real-time Supabase booking, Google OAuth,
+            OTP, and Row Level Security.</div>
+        </div>
+        <div class="project-card">
+          <div class="project-name">Weighbridge System</div>
+          <div class="project-desc">Industrial weighing station app with serial port hardware integration and
+            camera-based vehicle documentation.</div>
+        </div>
+        <div class="project-card">
+          <div class="project-name">Face Recognition ERP</div>
+          <div class="project-desc">Custom face recognition module using OpenCV + dlib integrated directly into
+            Frappe/ERPNext.</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">Education</div>
+      <div class="exp-list">
+        <div class="exp-card">
+          <div class="exp-header" style="cursor:default">
+            <div class="exp-icon">🎓</div>
+            <div class="exp-info">
+              <div class="exp-company">Bachelors in Mathematics</div>
+              <div class="exp-role">Indira Gandhi National Open University · Raipur</div>
+            </div>
+          </div>
+        </div>
+        <div class="exp-card">
+          <div class="exp-header" style="cursor:default">
+            <div class="exp-icon">📚</div>
+            <div class="exp-info">
+              <div class="exp-company">High School</div>
+              <div class="exp-role">Swami Atmanand Government English Medium Schools · Janjgir-Champa</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    
+    <div class="footer-copy">© 2025 – 2026 Nitesh Sharma · Bilaspur, CG</div>
+  </footer>
+
+  <script>
+    function toggle(header) {
+      const card = header.parentElement;
+      const body = card.querySelector('.exp-body');
+      const isOpen = body.classList.contains('open');
+      document.querySelectorAll('.exp-body.open').forEach(b => b.classList.remove('open'));
+      document.querySelectorAll('.exp-header.open').forEach(h => h.classList.remove('open'));
+      if (!isOpen) { body.classList.add('open'); header.classList.add('open') }
+    }
+
+    let phoneOpen = false;
+    function togglePhone() {
+      phoneOpen = !phoneOpen;
+      const btn = document.getElementById('phoneBtn');
+      const expand = document.getElementById('phoneExpand');
+      btn.classList.toggle('active', phoneOpen);
+      expand.classList.toggle('open', phoneOpen);
+      if (phoneOpen) copyPhone();
+    }
+
+    function copyPhone() {
+      const num = '+917067283010';
+      const hint = document.getElementById('copyHint');
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(num).then(() => {
+          hint.textContent = 'copied!';
+          hint.classList.add('copied');
+          setTimeout(() => { hint.textContent = 'copy'; hint.classList.remove('copied') }, 2000);
+        });
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = num; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        document.execCommand('copy'); document.body.removeChild(ta);
+        hint.textContent = 'copied!'; hint.classList.add('copied');
+        setTimeout(() => { hint.textContent = 'copy'; hint.classList.remove('copied') }, 2000);
+      }
+    }
+
+    function openLink(url) {
+      window.location.href = url;
+    }
+  </script>
+</body>
+
+</html>
